@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Virtual Mouse - Documentation</title>
+    <link rel="stylesheet" href="document.css">
+
+    <!-- AOS Library CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+</head>
+<body>
+    <div class="image-gradient"></div>
+    <div class="layer-blur"></div>
+
+    <header>
+        <h1>AI Virtual Mouse</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="explanation.html">Explanation</a>
+            <a href="features.html">Features</a>
+            <a href="resources.html">Resources</a>
+            <a href="document.html">Documentation</a>
+        </nav>
+        <div class="btn-signing">
+            <div class="user-circle">U</div>
+            <span>Sign In</span>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="box" data-aos="fade-up">
+                <div class="doc-section" data-aos="flip-left">
+                    <h2>1. Introduction</h2>
+                    <p>This project allows you to control your computer mouse using your hand movements through webcam input and computer vision techniques.</p>
+                </div>
+            </div>
+            <div class="box" data-aos="fade-up">
+                <div class="doc-section" data-aos="flip-left">
+                    <h2>2. Software Requirements</h2>
+                    <ul>
+                        <li>Python 3.7 or above</li>
+                        <li>OpenCV</li>
+                        <li>MediaPipe</li>
+                        <li>PyAutoGUI</li>
+                        <li>Pynput</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="box" data-aos="fade-up">
+                <div class="doc-section" data-aos="flip-left">
+                    <h2>3. Installation Steps</h2>
+                    <p>Install the required libraries using pip:</p>
+                    <pre><code>pip install opencv-python mediapipe pyautogui pynput</code></pre>
+                </div>
+            </div>
+            <div class="box" data-aos="fade-up">
+                <div class="doc-section" data-aos="flip-left">
+                    <h2>4. How It Works</h2>
+                    <p>The webcam captures the live video stream, which is processed to detect hand landmarks using MediaPipe. Based on finger positions, cursor movements, clicks, and scroll actions are triggered.</p>
+                </div>
+            </div>
+            <div class="box" data-aos="fade-up">
+                <div class="doc-section" data-aos="flip-left">
+                    <h2>5. Features</h2>
+                    <ul>
+                        <li>Hand-based cursor movement</li>
+                        <li>Single Click and Double Click using gestures</li>
+                        <li>Scrolling with thumb and pinky finger</li>
+                        <li>Right-click with middle and thumb finger</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="buttons">
+                <a href="index.html" class="btn-get-started">Back to Home</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 AI Virtual Mouse Project | All rights reserved</p>
+    </footer>
+
+    <!-- AOS Library JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+    </script>
+</body>
+</html>

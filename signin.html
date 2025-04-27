@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In | PRAZIL</title>
+    <link rel="stylesheet" href="signin.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+</head>
+<body>
+    <img class="image-gradient" src="gradient.png" alt="gradient">
+    <div class="layer-blur"></div>
+
+    <div class="container">
+        <header>
+            <h1 data-aos="fade-down" class="logo">PRAZIL</h1>
+            <nav>
+                <a data-aos="fade-down" href="#">COMPANY</a>
+                <a data-aos="fade-down" href="#">FEATURES</a>
+                <a data-aos="fade-down" href="#">RESOURCES</a>
+                <a data-aos="fade-down" href="#">DOCS</a>
+            </nav>
+            <div id="user-circle" class="user-circle" style="display:none;"></div> <!-- User letter display -->
+            <a data-aos="fade-down" href="index.html" class="btn-signing">HOME</a>
+        </header>
+
+        <main>
+            <div class="content">
+                <div class="tag-box" data-aos="fade-zoom-in">
+                    <div class="tag">WELCOME BACK</div>
+                </div>
+
+                <h1 data-aos="fade-zoom-in">Sign In</h1>
+
+                <form class="signin-form" action="#" method="POST" data-aos="fade-zoom-in" id="signinForm">
+                    <input type="text" id="username" name="username" placeholder="Username" required>
+                    <input type="password" id="password" name="password" placeholder="Password" required>
+                    <button type="submit" class="btn-signing-main">Login</button>
+                </form>
+
+                <p style="margin-top: 1rem;">Don't have an account? <a href="register.html" style="color:#6600c5;">Register</a></p>
+            </div>
+        </main>
+
+        <spline-viewer class="robot-3d" url="https://prod.spline.design/b3Vmc7NBV6Y1E2Eu/scene.splinecode"></spline-viewer>
+    </div>
+
+    <!-- Success Popup -->
+    <div id="loginSuccessPopup" class="popup">
+        <div class="popup-content">
+            <h2>Login Successful!</h2>
+            <p>Welcome back to your account.</p>
+            <button id="closePopup" class="btn-signing">Close</button>
+        </div>
+    </div>
+
+    <!-- Invalid Login Popup -->
+    <div id="loginInvalidPopup" class="popup">
+        <div class="popup-content">
+            <h2>Invalid Username or Password</h2>
+            <p>Please check your credentials and try again.</p>
+            <button id="closeInvalidPopup" class="btn-signing">Close</button>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script type="module" src="https://unpkg.com/@splinetool/viewer/build/spline-viewer.js"></script>
+    <script>
+        AOS.init();
+
+        document.getElementById('signinForm').addEventListener('submit', function(e){
+            e.preventDefault();
+            const username = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value.trim();
+
+            const users = JSON.parse(localStorage.getItem('users')) || [];
+            const user = users.find(u => u.username === username && u.password === password);
+
+            if (user) {
+                localStorage.setItem('loggedInUser', username);
+
+                // Show success popup
+                document.getElementById('loginSuccessPopup').classList.add('show');
+                
+                // Store the first letter of the username in localStorage
+                const firstLetter = username.charAt(0).toUpperCase();
+                localStorage.setItem('userFirstLetter', firstLetter);
+                
+                // Show the user's first letter in the header
+                const userCircle = document.getElementById('user-circle');
+                userCircle.innerText = firstLetter;
+                userCircle.style.display = 'flex';
+
+                // Redirect after a short delay (so the user sees the success message)
+                setTimeout(function() {
+                    window.location.href = "home.html";
+                }, 2000); // Delay of 2 seconds
+            } else {
+                // Show invalid login popup
+                document.getElementById('loginInvalidPopup').classList.add('show');
+            }
+        });
+
+        document.getElementById('closePopup').addEventListener('click', function() {
+            document.getElementById('loginSuccessPopup').classList.remove('show');
+        });
+
+        document.getElementById('closeInvalidPopup').addEventListener('click', function() {
+            document.getElementById('loginInvalidPopup').classList.remove('show');
+        });
+        
+        // Event listener to logout when the user's first letter is clicked
+        document.getElementById('user-circle').addEventListener('click', function() {
+            const confirmLogout = confirm("Do you want to logout?");
+            if (confirmLogout) {
+                localStorage.removeItem('loggedInUser');
+                localStorage.removeItem('userFirstLetter');
+                window.location.href = 'signin.html';
+            }
+        });
+    </script>
+</body>
+</html>
